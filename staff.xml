@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Organiser>
+  <staff id="1">
+    <fullName>Ivanov</fullName>
+    <position>Admin</position>
+    <organisation>VER</organisation>
+    <E-mail>ivanov@mail.ru</E-mail>
+    <phone>+79652365488</phone>
+  </staff>
+  <staff id="2">
+    <fullName>Petrov</fullName>
+    <position>Manager</position>
+    <organisation>VER</organisation>
+    <E-mail>petrov@gmail.com</E-mail>
+    <phone>+79652365478</phone>
+  </staff>
+  <staff id="3">
+    <fullName>Ososkov</fullName>
+    <position>Manager</position>
+    <organisation>VER</organisation>
+    <E-mail>ososkov@mail.ru</E-mail>
+    <phone>+79001234556</phone>
+    <phone>+79523665236</phone>
+  </staff>
+</Organiser>
