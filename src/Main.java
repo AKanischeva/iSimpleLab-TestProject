@@ -71,8 +71,8 @@ public class Main {
             position = nextStaff.getChildText("position");
             organisation = nextStaff.getChildText("organisation");
             mail = nextStaff.getChildText("E-mail");
-            List<Element> l = nextStaff.getChildren("phone");
-            for (Element nextPhone : l) {
+            List<Element> listPhone = nextStaff.getChildren("phone");
+            for (Element nextPhone : listPhone) {
                 phone.add(nextPhone.getValue());
             }
             Employee data = new Employee(id, fullName, position, organisation, mail, phone);
@@ -150,8 +150,8 @@ public class Main {
         child.addContent(new Element(pos).setText(org.position));
         child.addContent(new Element(organ).setText(org.organisation));
         child.addContent(new Element(mail).setText(org.mail));
-        for (String l : org.phone) {
-            child.addContent(new Element(ph).setText(l));
+        for (String phoneStr : org.phone) {
+            child.addContent(new Element(ph).setText(phoneStr));
         }
         root.addContent(child);
         document.setContent(root);
@@ -273,8 +273,8 @@ public class Main {
                         System.out.println("E-mail: "
                                 + nextStaff.getChildText("E-mail"));
 
-                        List<Element> l = nextStaff.getChildren("phone");
-                        for (Element nextPhone : l) {
+                        List<Element> listPhone = nextStaff.getChildren("phone");
+                        for (Element nextPhone : listPhone) {
                             System.out.println("phone: "
                                     + nextPhone.getValue());
                         }
