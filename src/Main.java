@@ -124,10 +124,9 @@ public class Main {
      * @throws JDOMException
      * @throws IOException
      */
-    public static Integer Writer(Employee org) throws JDOMException, IOException {
+    public static void Writer(Employee org) throws JDOMException, IOException {
         Document document = null;
         Element root = null;
-        Integer newId = 0;
         File xmlFile = new File(FILENAME);
         if (xmlFile.exists()) {
             FileInputStream fis = new FileInputStream(xmlFile);
@@ -156,9 +155,6 @@ public class Main {
         }
         root.addContent(child);
         document.setContent(root);
-        List<Element> al = root.getChildren("staff");
-        Element a = al.get(al.size() - 1);
-        newId = Integer.parseInt(a.getAttributeValue("id"));
         try {
             FileWriter writer = new FileWriter(FILENAME);
             XMLOutputter outputter = new XMLOutputter();
@@ -169,7 +165,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return newId;
     }
 
     /**
@@ -315,9 +310,26 @@ public class Main {
         Matcher m = p.matcher(testString);
         return m.matches();
     }
-
+    public static int isFirstId()throws JDOMException, IOException{
+        Document document = null;
+        Element root = null;
+        Integer newId = 1;
+        File xmlFile = new File(FILENAME);
+        if (xmlFile.exists()) {
+            FileInputStream fis = new FileInputStream(xmlFile);
+            SAXBuilder sb = new SAXBuilder();
+            document = sb.build(fis);
+            root = document.getRootElement();
+            List<Element> al = root.getChildren("staff");
+            Element a = al.get(al.size() - 1);
+            newId = Integer.parseInt(a.getAttributeValue("id"));
+            fis.close();
+            return newId;
+        }
+        return 1;
+    }
     public static void main(String[] args) throws JDOMException, IOException {
-        Integer id = 1;
+        Integer id = isFirstId();
         String fullName = null;
         String position = null;
         String organisation = null;
@@ -368,7 +380,7 @@ public class Main {
                         id = deletedId.pop();
                     }
                     Employee data = new Employee(id, fullName, position, organisation, mail, ph);
-                    id = Writer(data);
+                    Writer(data);
                     //list.add(data);
                     ph.clear();
                     id++;
